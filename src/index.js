@@ -1,5 +1,3 @@
-import "@style/style";
-import data from "./assets/data.json";
+import renderTable from "@scripts/renderTable";
 
-console.log(123);
-console.log(data);
+import "@style/style";

@@ -1,9 +1,107 @@
-body {
-  display: flex;
-  background-color: #979797;
-  justify-content: center;
+* {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
 }
-h1 {
-  color: #3a7cdf;
-  margin-top: 50px;
+body {
+  width: 100%;
+}
+
+header {
+  width: 100%;
+  ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    width: initial;
+    background-color: #dadada;
+    li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      list-style: none;
+      height: 30px;
+      min-width: 115px;
+      margin: 0 5px;
+      padding: 5px 10px;
+      border: 1px solid #505050;
+      border-radius: 5px;
+      font-size: 15px;
+      cursor: pointer;
+      &:hover {
+        background-color: #bebebe;
+      }
+      img {
+        margin-right: 5px;
+        width: 17px;
+      }
+      span {
+        text-align: center;
+        line-height: 0.8em;
+      }
+    }
+  }
+}
+
+main {
+  .table {
+    width: 50%;
+    margin: 10px auto;
+    td {
+      text-align: center;
+      height: 40px;
+      border: 1px solid #000;
+      border-radius: 5px;
+    }
+    &-head {
+      td {
+        position: relative;
+        padding: 0 10px;
+        background-color: #778beb;
+        img {
+          position: absolute;
+          bottom: 2px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 10px;
+        }
+        span {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: clip;
+          font-size: 15px;
+        }
+      }
+    }
+
+    &-body {
+      tr {
+        cursor: pointer;
+        td {
+          .text-about {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            -webkit-line-clamp: 2;
+          }
+          .eyeColor__color {
+            width: 30px;
+            height: 30px;
+            margin: 0 auto;
+            border-radius: 50%;
+          }
+        }
+        &:hover {
+          box-shadow: inset 0px 0px 300px -42px #ffffff8f;
+        }
+        &:nth-child(even) {
+          background-color: #e17155b0;
+        }
+        &:nth-child(odd) {
+          background-color: #979797b2;
+        }
+      }
+    }
+  }
 }

@@ -6,6 +6,59 @@
     <title>Table</title>
   </head>
   <body>
-    <h1>Test</h1>
+    <header>
+      <ul>
+        <li>
+          <img src="svg/eye-regular.svg" alt="visible-eye" data-view="view" />
+          <img src="svg/eye-slash-regular.svg" hidden alt="invisible-eye" data-view="hidden" />
+          <span>Скрыть все столбцы</span>
+        </li>
+        <li>
+          <img src="svg/eye-regular.svg" alt="visible-eye" data-view="view" />
+          <img src="svg/eye-slash-regular.svg" hidden alt="invisible-eye" data-view="hidden" />
+          <span>Скрыть имя</span>
+        </li>
+        <li>
+          <img src="svg/eye-regular.svg" alt="visible-eye" data-view="view" />
+          <img src="svg/eye-slash-regular.svg" hidden alt="invisible-eye" data-view="hidden" />
+          <span>Скрыть фамилию</span>
+        </li>
+        <li>
+          <img src="svg/eye-regular.svg" alt="visible-eye" data-view="view" />
+          <img src="svg/eye-slash-regular.svg" hidden alt="invisible-eye" data-view="hidden" />
+          <span>Скрыть информацию</span>
+        </li>
+        <li>
+          <img src="svg/eye-regular.svg" alt="invisible-eye" data-view="view" />
+          <img src="svg/eye-slash-regular.svg" hidden alt="invisible-eye" data-view="hidden" />
+          <span>Скрыть цвет глаз</span>
+        </li>
+      </ul>
+    </header>
+    <main>
+      <table class="table">
+        <thead class="table-head">
+          <tr>
+            <td data-cell="1">
+              <span>Имя</span>
+              <img src="svg/sort-down-solid.svg" hidden alt="sort-arrow" />
+            </td>
+            <td data-cell="2">
+              <span>Фамилия</span>
+              <img src="svg/sort-down-solid.svg" hidden alt="sort-arrow" />
+            </td>
+            <td data-cell="3">
+              <span>Информация</span>
+              <img src="svg/sort-down-solid.svg" hidden alt="sort-arrow" />
+            </td>
+            <td data-cell="4">
+              <span>Цвет глаз</span>
+              <img src="svg/sort-down-solid.svg" hidden alt="sort-arrow" />
+            </td>
+          </tr>
+        </thead>
+        <tbody class="table-body"></tbody>
+      </table>
+    </main>
   </body>
 </html>

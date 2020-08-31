@@ -32,6 +32,8 @@ module.exports = {
     extensions: [".js", ".json", ".scss"],
     alias: {
       "@style": path.resolve(__dirname, "src/scss"),
+      "@assets": path.resolve(__dirname, "src/assets"),
+      "@scripts": path.resolve(__dirname, "src/assets/scripts"),
     },
   },
   plugins: [
@@ -41,6 +43,14 @@ module.exports = {
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
       filename: filename("css"),
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: path.resolve(__dirname, "src/assets/svg"),
+          to: path.resolve(__dirname, "dist/svg"),
+        },
+      ],
     }),
   ],
   devServer: {
