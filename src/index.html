@@ -36,22 +36,31 @@
       </ul>
     </header>
     <main>
+      <div class="person-on-page">
+        <ul>
+          <li>Карточек на странице:</li>
+          <li class="person-on-page__number">5</li>
+          <li class="person-on-page__number">10</li>
+          <li class="person-on-page__number">25</li>
+          <li class="person-on-page__number">50</li>
+        </ul>
+      </div>
       <table class="table">
         <thead class="table-head">
           <tr>
-            <td data-cell="1">
+            <td data-sorted="false" data-mode="down" data-cell="1">
               <span>Имя</span>
               <img src="svg/sort-down-solid.svg" hidden alt="sort-arrow" />
             </td>
-            <td data-cell="2">
+            <td data-sorted="false" data-mode="down" data-cell="2">
               <span>Фамилия</span>
               <img src="svg/sort-down-solid.svg" hidden alt="sort-arrow" />
             </td>
-            <td data-cell="3">
+            <td data-sorted="false" data-mode="down" data-cell="3">
               <span>Информация</span>
               <img src="svg/sort-down-solid.svg" hidden alt="sort-arrow" />
             </td>
-            <td data-cell="4">
+            <td data-sorted="false" data-mode="down" data-cell="4">
               <span>Цвет глаз</span>
               <img src="svg/sort-down-solid.svg" hidden alt="sort-arrow" />
             </td>
@@ -59,6 +68,7 @@
         </thead>
         <tbody class="table-body"></tbody>
       </table>
+      <div class="page-list"></div>
     </main>
   </body>
 </html>

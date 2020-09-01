@@ -1,3 +1,5 @@
-import renderTable from "@scripts/renderTable";
+import tableGeneration from "@scripts/renderTable";
 
 import "@style/style";
+
+tableGeneration();

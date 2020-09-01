@@ -1,3 +1,5 @@
+@import "mixins.scss";
+
 * {
   margin: 0;
   padding: 0;
@@ -5,21 +7,18 @@
 }
 body {
   width: 100%;
+  background-color: #eeeeee;
 }
 
 header {
   width: 100%;
   ul {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include fcenter;
     height: 50px;
     width: initial;
     background-color: #dadada;
     li {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      @include fcenter;
       list-style: none;
       height: 30px;
       min-width: 115px;
@@ -45,23 +44,56 @@ header {
 }
 
 main {
+  .person-on-page {
+    @include fcenter;
+    ul {
+      width: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      li {
+        margin: 10px 5px 0;
+        list-style: none;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: default;
+        &.person-on-page__number {
+          cursor: pointer;
+          &.active {
+            color: #0084ff;
+          }
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
   .table {
     width: 50%;
-    margin: 10px auto;
+    margin: 0 auto;
     td {
       text-align: center;
       height: 40px;
+      min-width: 15%;
       border: 1px solid #000;
       border-radius: 5px;
+      &[data-cell="1"] {
+        width: 75px;
+      }
+      &[data-cell="2"] {
+        width: 70px;
+      }
     }
     &-head {
       td {
         position: relative;
         padding: 0 10px;
-        background-color: #778beb;
+        background-color: #3c5aec;
+        font-weight: bold;
         img {
           position: absolute;
-          bottom: 2px;
+          bottom: 0;
           left: 50%;
           transform: translateX(-50%);
           width: 10px;
@@ -79,6 +111,7 @@ main {
       tr {
         cursor: pointer;
         td {
+          padding: 0 5px;
           .text-about {
             display: -webkit-box;
             -webkit-box-orient: vertical;
@@ -96,11 +129,41 @@ main {
           box-shadow: inset 0px 0px 300px -42px #ffffff8f;
         }
         &:nth-child(even) {
-          background-color: #e17155b0;
+          background-color: #7886cf;
         }
         &:nth-child(odd) {
           background-color: #979797b2;
         }
+      }
+    }
+  }
+  .page-list {
+    @include fcenter;
+    ul {
+      @include fcenter;
+      .page-list__number {
+        @include fcenter;
+        width: 20px;
+        height: 20px;
+        margin: 0 5px;
+        background-color: #d4d4d4b2;
+        border: 1px solid #444444;
+        border-radius: 5px;
+        font-weight: 600;
+        list-style: none;
+        cursor: pointer;
+        &:hover {
+          background-color: #7c7c7cb2;
+        }
+        &.active {
+          border: 2px solid #516ae7;
+        }
+      }
+    }
+    .arrow {
+      cursor: pointer;
+      &:hover {
+        color: #616161;
       }
     }
   }
