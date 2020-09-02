@@ -1,6 +1,7 @@
 import data from "@assets/data.json";
-import conf from "@scripts/configuration";
+import commonParams from "@scripts/commonParams";
 import { sortData } from "@scripts/sortData";
+import hideHiddenColumns from "@scripts/hideColumn";
 
 const $tableBody = document.querySelector(".table-body");
 const $pageList = document.querySelector(".page-list");
@@ -48,11 +49,12 @@ export function renderTablePage(page, elemOnPage) {
     }
     $tableBody.append(tr);
   });
+  hideHiddenColumns();
 }
 
 function renderPageList(currentPage, pageQuantity) {
   $pageList.innerHTML = "";
-  conf.currentPage = currentPage;
+  commonParams.currentPage = currentPage;
   if (pageQuantity === 1) return;
   let ul = document.createElement("ul");
   for (let i = 0; i < pageQuantity; ++i) {
@@ -65,22 +67,22 @@ function renderPageList(currentPage, pageQuantity) {
 
 $pageList.addEventListener("click", (evt) => {
   let type = evt.target.dataset.type;
-  let currentPage = conf.currentPage,
+  let currentPage = commonParams.currentPage,
     lastPage = +$pageList.querySelector("ul").lastChild.innerText;
   switch (type) {
     case "arrow": {
       let futurePage;
       if (evt.target.dataset.arrow === "left") {
         futurePage = currentPage - 1;
-        futurePage >= 1 && renderTablePage(futurePage, conf.elemOnPage);
+        futurePage >= 1 && renderTablePage(futurePage, commonParams.elemOnPage);
       } else {
         futurePage = currentPage + 1;
-        futurePage <= lastPage && renderTablePage(futurePage, conf.elemOnPage);
+        futurePage <= lastPage && renderTablePage(futurePage, commonParams.elemOnPage);
       }
       break;
     }
     case "page": {
-      renderTablePage(+evt.target.innerText, conf.elemOnPage);
+      renderTablePage(+evt.target.innerText, commonParams.elemOnPage);
       break;
     }
   }
@@ -96,8 +98,8 @@ $personOnPage.addEventListener("click", (evt) => {
     evt.target.classList.add("active");
 
     localStorage.setItem("elemOnPage", `${+evt.target.innerText}`);
-    conf.updateElemOnPage();
-    renderTablePage(1, conf.elemOnPage);
+    commonParams.updateElemOnPage();
+    renderTablePage(1, commonParams.elemOnPage);
   }
 });
 
@@ -106,6 +108,6 @@ function selectQuantityPersonsOnPage(num) {
 }
 
 export default function tableGeneration() {
-  selectQuantityPersonsOnPage(conf.elemOnPage);
-  renderTablePage(conf.currentPage, conf.elemOnPage);
+  selectQuantityPersonsOnPage(commonParams.elemOnPage);
+  renderTablePage(commonParams.currentPage, commonParams.elemOnPage);
 }

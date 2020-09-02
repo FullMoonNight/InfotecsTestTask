@@ -1,4 +1,4 @@
-import conf from "@scripts/configuration";
+import commonParams from "@scripts/commonParams";
 import data from "@assets/data";
 import { renderTablePage } from "@scripts/renderTable";
 
@@ -6,7 +6,7 @@ const $thead = document.querySelector(".table-head");
 const $tbody = document.querySelector(".table-body");
 
 function loadLocalData() {
-  let partOfData = data.slice((conf.currentPage - 1) * conf.elemOnPage, conf.currentPage * conf.elemOnPage);
+  let partOfData = data.slice((commonParams.currentPage - 1) * commonParams.elemOnPage, commonParams.currentPage * commonParams.elemOnPage);
   return partOfData.map((elem) => JSON.parse(localStorage.getItem(`${elem.id}`)) || elem);
 }
 
@@ -51,7 +51,7 @@ $thead.addEventListener("click", (evt) => {
     ? (title.querySelector("img").style.transform = "scaleY(-1) translate(-50%, 150%)")
     : (title.querySelector("img").style.transform = "scaleY(1) translate(-50%)");
 
-  renderTablePage(conf.currentPage, conf.elemOnPage);
+  renderTablePage(commonParams.currentPage, commonParams.elemOnPage);
 });
 
 $thead.addEventListener("mousedown", (evt) => {
