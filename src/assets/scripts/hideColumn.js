@@ -2,7 +2,6 @@ import commParams from "@scripts/commonParams";
 
 const $hideMenu = document.querySelector(".hide-menu");
 const $table = document.querySelector(".table");
-console.log($table);
 
 $hideMenu.addEventListener("click", (evt) => {
   let btn = evt.target.closest("li");
