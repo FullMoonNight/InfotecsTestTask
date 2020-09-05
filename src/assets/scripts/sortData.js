@@ -1,16 +1,9 @@
 import commonParams from "@scripts/commonParams";
-import data from "@assets/data";
 import { renderTablePage } from "@scripts/renderTable";
 
 const $thead = document.querySelector(".table-head");
-const $tbody = document.querySelector(".table-body");
 
-function loadLocalData() {
-  let partOfData = data.slice((commonParams.currentPage - 1) * commonParams.elemOnPage, commonParams.currentPage * commonParams.elemOnPage);
-  return partOfData.map((elem) => JSON.parse(localStorage.getItem(`${elem.id}`)) || elem);
-}
-
-function sort(column, mode, a, b) {
+export default function sort(column, mode, a, b) {
   let switcher = mode === "up" ? 1 : -1;
   switch (column) {
     case 1:
@@ -22,18 +15,6 @@ function sort(column, mode, a, b) {
     case 4:
       return a.eyeColor > b.eyeColor ? 1 * switcher : -1 * switcher;
   }
-}
-
-export function sortData() {
-  let activeSortTitle = $thead.querySelector('[data-sorted="true"]');
-  let colNum;
-  activeSortTitle && (colNum = +activeSortTitle.dataset.cell);
-  let partOfData = loadLocalData();
-  if (!colNum) return partOfData;
-  let mode = activeSortTitle.dataset.mode;
-  let s = sort.bind(null, colNum, mode);
-
-  return partOfData.sort(s);
 }
 
 $thead.addEventListener("click", (evt) => {

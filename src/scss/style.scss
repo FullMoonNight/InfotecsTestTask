@@ -3,7 +3,7 @@
 * {
   margin: 0;
   padding: 0;
-  font-family: montserrat;
+  font-family: montserrat, "Tahoma", sans-serif;
 }
 body {
   width: 100%;
@@ -59,6 +59,7 @@ header {
     display: flex;
     flex-direction: column;
     width: 500px;
+    min-height: 525px;
     border-radius: 20px;
     top: 50%;
     left: 50%;
@@ -72,8 +73,9 @@ header {
       padding: 40px;
       .input-field {
         position: relative;
-        width: 300px;
+        width: 400px;
         margin: 15px 0;
+        font-weight: 500;
         input {
           box-sizing: border-box;
           width: inherit;
@@ -88,9 +90,10 @@ header {
         }
         textarea {
           box-sizing: border-box;
-          width: 300px;
-          height: 70px;
-          min-height: 50px;
+          width: inherit;
+          height: 170px;
+          min-height: 170px;
+          max-height: 300px;
           resize: vertical;
           padding: 5px 10px;
           outline: none;
@@ -107,32 +110,38 @@ header {
             position: absolute;
             height: 10px;
             width: 100%;
-            top: -20px;
+            top: -22px;
             left: 0;
           }
         }
       }
       .button-block {
         display: flex;
-        justify-content: space-around;
-        width: 300px;
+        justify-content: space-between;
+        width: 175px;
         button {
           width: 85px;
           height: 25px;
           outline: none;
           border: none;
           border-radius: 5px;
-          cursor: pointer;
           &.submit {
             background-color: #16be00;
           }
           &.cancel {
             background-color: #ff6c6c;
           }
-          &:hover {
+          &:not(:disabled):hover {
+            box-shadow: inset 0 0 10px 5px #ffffffa2;
           }
         }
       }
+    }
+    span {
+      margin-bottom: 5px;
+      text-align: center;
+      font-size: 12px;
+      color: #505050;
     }
   }
 }
@@ -173,10 +182,10 @@ main {
       border: 1px solid #000;
       border-radius: 5px;
       &[data-cell="1"] {
-        width: 75px;
+        min-width: 87px;
       }
       &[data-cell="2"] {
-        width: 70px;
+        min-width: 70px;
       }
     }
     &-head {
@@ -197,6 +206,7 @@ main {
           overflow: hidden;
           text-overflow: clip;
           font-size: 15px;
+          cursor: default;
         }
       }
     }

@@ -1,25 +1,24 @@
 import data from "@assets/data.json";
 import commonParams from "@scripts/commonParams";
-import { sortData } from "@scripts/sortData";
+import getCurrentData from "@scripts/currentData";
 import hideHiddenColumns from "@scripts/hideColumn";
 
 const $tableBody = document.querySelector(".table-body");
 const $pageList = document.querySelector(".page-list");
 const $personOnPage = document.querySelector(".person-on-page");
 
-export function renderTablePage(page, elemOnPage) {
+export function renderTablePage(page = commonParams.currentPage, elemOnPage = commonParams.elemOnPage) {
   renderPageList(page, Math.ceil(data.length / elemOnPage));
 
-  const partOfData = sortData();
+  const partOfData = getCurrentData();
   $tableBody.innerHTML = "";
   partOfData.forEach((elem) => {
-    let localElem = localStorage.getItem(`${elem.id}`);
     let {
       name: { firstName, lastName },
       id,
       about,
       eyeColor,
-    } = localElem ? localElem : elem;
+    } = elem;
 
     const params = [
       { value: firstName, class: "name" },
