@@ -19,7 +19,7 @@ $tBody.addEventListener("click", async (evt) => {
     aboutInput.innerText = aboutElem.querySelector("p").innerText;
     colorInput.value = colorElem.querySelector("div").dataset.color;
 
-    $modalWindow.hidden = false;
+    $modalWindow.classList.add("active");
     $modalWindow.querySelector(".tip").hidden = false;
     document.body.style.overflow = "hidden";
 
@@ -29,8 +29,13 @@ $tBody.addEventListener("click", async (evt) => {
 });
 
 $modalWindow.addEventListener("change", (evt) => {
-  $submitBtn.disabled = false;
-  $modalWindow.querySelector(".tip").hidden = true;
+  if (validate()) {
+    $submitBtn.disabled = false;
+    $modalWindow.querySelector(".tip").hidden = true;
+    zeroingValidate();
+  } else {
+    $submitBtn.disabled = true;
+  }
 });
 
 function clickHandler(elem, evt) {
@@ -41,21 +46,46 @@ function clickHandler(elem, evt) {
       let [nameInput, surnameInput, aboutInput, colorInput] = $modalWindow.querySelectorAll(".input");
       let valuesFromInputs = {
         name: {
-          firstName: nameInput.value,
-          lastName: surnameInput.value,
+          firstName: withCapitalLetter(nameInput.value),
+          lastName: withCapitalLetter(surnameInput.value),
         },
-        about: aboutInput.value,
-        eyeColor: colorInput.value,
+        about: aboutInput.value.trim(),
+        eyeColor: colorInput.value.trim().toLowerCase(),
       };
       localStorage.setItem(id, JSON.stringify({ ...currentObj, ...valuesFromInputs }));
       renderTablePage();
     }
     $submitBtn.disabled = true;
-    $modalWindow.hidden = true;
+    $modalWindow.classList.remove("active");
     document.body.style.overflow = "";
+    zeroingValidate();
   }
 }
 
 $modalBg.addEventListener("click", (evt) => {
   $cancelBtn.dispatchEvent(new Event("click", { bubbles: true }));
 });
+
+function validate() {
+  let [nameInput, surnameInput, aboutInput, colorInput] = $modalWindow.querySelectorAll(".input");
+  let result = true;
+  [nameInput, surnameInput, colorInput].forEach((elem) => {
+    let str = elem.value.trim();
+    if ((str.match(/[a-z]/gi) || []).length !== str.length || str.length === 0) {
+      elem.closest(".input-field").classList.add("no-valid");
+      result = false;
+    }
+  });
+  return result;
+}
+
+function zeroingValidate() {
+  $modalWindow.querySelectorAll(".no-valid").forEach((elem) => elem.classList.remove("no-valid"));
+}
+
+function withCapitalLetter(str) {
+  let arr = str.trim().toLowerCase().split("");
+  arr[0] = arr[0].toUpperCase();
+  console.log(typeof arr[0]);
+  return arr.join("");
+}
