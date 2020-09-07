@@ -192,6 +192,7 @@ main {
         font-size: 15px;
         font-weight: 600;
         cursor: default;
+        white-space: nowrap;
         &.person-on-page__number {
           cursor: pointer;
           &.active {
@@ -210,7 +211,6 @@ main {
     td {
       text-align: center;
       height: 40px;
-      min-width: 15%;
       border: 1px solid #000;
       border-radius: 5px;
       &[data-cell="1"] {
