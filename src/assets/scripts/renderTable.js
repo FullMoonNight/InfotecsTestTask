@@ -56,8 +56,25 @@ function renderPageList(currentPage, pageQuantity) {
   commonParams.currentPage = currentPage;
   if (pageQuantity === 1) return;
   let ul = document.createElement("ul");
-  for (let i = 0; i < pageQuantity; ++i) {
-    ul.insertAdjacentHTML("beforeend", `<li class='page-list__number ${i + 1 === currentPage ? "active" : ""}' data-type='page'>${i + 1}</li>`);
+
+  if (pageQuantity > 5) {
+    if (currentPage - 1 > 1 && pageQuantity - currentPage > 1) {
+      for (let i = currentPage - 2; i < currentPage + 3; ++i) {
+        ul.insertAdjacentHTML("beforeend", `<li class='page-list__number ${i === currentPage ? "active" : ""}' data-type='page'>${i}</li>`);
+      }
+    } else if (currentPage - 1 <= 1) {
+      for (let i = 0; i < 5; i++) {
+        ul.insertAdjacentHTML("beforeend", `<li class='page-list__number ${i + 1 === currentPage ? "active" : ""}' data-type='page'>${i + 1}</li>`);
+      }
+    } else if (pageQuantity - currentPage <= 1) {
+      for (let i = pageQuantity - 5; i < pageQuantity; i++) {
+        ul.insertAdjacentHTML("beforeend", `<li class='page-list__number ${i + 1 === currentPage ? "active" : ""}' data-type='page'>${i + 1}</li>`);
+      }
+    }
+  } else {
+    for (let i = 0; i < pageQuantity; ++i) {
+      ul.insertAdjacentHTML("beforeend", `<li class='page-list__number ${i + 1 === currentPage ? "active" : ""}' data-type='page'>${i + 1}</li>`);
+    }
   }
   $pageList.append(ul);
   $pageList.insertAdjacentHTML("afterbegin", "<span class='arrow' data-type='arrow' data-arrow='left'>&#9668;</span>");
